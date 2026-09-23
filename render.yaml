@@ -11,11 +11,8 @@ services:
     region: oregon
     plan: free
     branch: main
-    python: "3.11.7"
+    python: "3.11"
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run main.py --server.port $PORT --server.address 0.0.0.0
     healthCheckPath: /
     autoDeploy: true
-    envVars:
-      - key: STREAMLIT_SERVER_PORT
-        value: $PORT
