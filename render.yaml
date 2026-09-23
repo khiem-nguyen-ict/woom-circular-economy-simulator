@@ -1,0 +1,21 @@
+databases:
+  - name: woom-circular-simulator-db
+    databaseName: woomcircular
+    plan: free
+    ipAllowList: []
+
+services:
+  - type: web
+    name: woom-circular-simulator
+    runtime: python
+    region: oregon
+    plan: free
+    branch: main
+    python: "3.11.7"
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run main.py --server.port $PORT --server.address 0.0.0.0
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: STREAMLIT_SERVER_PORT
+        value: $PORT
